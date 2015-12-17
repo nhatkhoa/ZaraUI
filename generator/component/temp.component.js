@@ -1,6 +1,6 @@
-import template from './<%= name %>.html';
-import controller from './<%= name %>.controller';
-import './<%= name %>.styl';
+import template from './<%= paramCase %>.html';
+import controller from './<%= paramCase %>.controller';
+import './<%= paramCase %>.styl';
 
 let <%= name %>Component = function () {
   return {
@@ -8,7 +8,7 @@ let <%= name %>Component = function () {
     scope: {},
     template,
     controller,
-    controllerAs: 'vm',
+    controllerAs: '<%= name %>',
     bindToController: true
   };
 };

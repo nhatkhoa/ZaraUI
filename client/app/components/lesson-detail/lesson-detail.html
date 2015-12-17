@@ -1,0 +1,44 @@
+<div class="row lesson-detail" layout-padding>
+  <div class="col s8" layout-padding>
+    <div layout-padding>
+      <h4>{{ lessonDetail.lesson.name }}</h4>
+      <h6>{{ lessonDetail.lesson.description }}</h6>
+      <h6>{{ app.selectedLesson }}</h6>
+    </div>
+    <md-divider md-inset></md-divider>
+    <md-grid-list md-cols="3" md-gutter="16px" md-row-height="1:1" layout-padding layout-wrap>
+      <md-grid-tile ng-repeat="exercise in lessonDetail.lesson.exercises" md-colspan="1">
+        <md-card layout-fill>
+          <md-card-content>
+            <h6>{{ exercise.title }}</h6>
+            <p>{{ exercise.description }}</p>
+          </md-card-content>
+          <div class="md-actions" layout="column" layout-align="center center">
+            <md-button ng-click="lessonDetail.selectExercise(exercise)">Vào Làm Bài</md-button>
+          </div>
+        </md-card>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+  <div class="col s4" layout>
+    <md-card class="pokemon" layout-padding>
+      <md-card-header>
+        <md-card-header-text layout="column">
+          <span class="md-title">{{ lessonDetail.lesson.pokemon || 'Chưa Học'}}</span>
+          <span class="md-subhead">Cấp độ : {{ lessonDetail.lesson.pokemonLevel }}</span>
+        </md-card-header-text>
+      </md-card-header>
+      <div layout="column" layout-align="center center" ng-class="{active: lessonDetail.lesson.pokemonLevel !== 0}">
+        <img flex class="md-card-image" src="{{ lessonDetail.getPokemonImage() }}" alt="image caption">
+      </div>
+      <md-card-content>
+      </md-card-content>
+      <md-card-footer>
+        Card footer
+      </md-card-footer>
+      <div class="md-actions" layout="row|column" layout-align="start|end|center start|end|center">
+        <md-button>content</md-button>
+      </div>
+    </md-card>
+  </div>
+</div>

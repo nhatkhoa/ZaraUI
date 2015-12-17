@@ -1,19 +1,11 @@
-<div layout="row">
-  <md-sidenav md-component-id="left" class="md-sidenav-left">
-    Left Nav!
-  </md-sidenav>
-  <md-content>
-    Center Content
-    <md-button ng-click="openLeftMenu()">
-      Open Left Menu
-    </md-button>
-  </md-content>
-  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
-    <form>
-      <md-input-container>
-        <label for="testInput">Test input</label>
-        <input id="testInput" type="text" ng-model="data" md-autofocus>
-      </md-input-container>
-    </form>
-  </md-sidenav>
-</div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+      <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+      <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+      <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+    </ul>
+  </div>
+</nav>

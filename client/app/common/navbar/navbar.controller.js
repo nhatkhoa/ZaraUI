@@ -1,14 +1,10 @@
+
 class NavbarController {
-  constructor($mdSidenav) {
+  /*@ngInject*/
+  constructor() {
     this.name = 'navbar';
-    angular.extends({
-      $mdSidenav
-    });
   }
-  openLeftMenu() {
-    this.$mdSidenav('left').toggle();
-    console.log('dasdas');
-  }
+
 
 }
 

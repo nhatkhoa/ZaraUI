@@ -11,6 +11,7 @@ import fs from 'fs';
 import yargs from 'yargs';
 import lodash from 'lodash';
 import proxy from 'http-proxy-middleware';
+import changeCase from 'change-case';
 
 let reload = () => serve.reload();
 let root = 'client';
@@ -30,6 +31,7 @@ let resolveToComponents = (glob) => {
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
   styl: resolveToApp('**/*.styl'), // stylesheets
+  common: resolveToApp('common/**/*.js'), // stylesheets
   html: [
     resolveToApp('**/*.html'),
     path.join(root, 'index.html')
@@ -64,7 +66,7 @@ gulp.task('serve', () => {
 });
 
 gulp.task('watch', () => {
-  let allPaths = [].concat([paths.js], paths.html, [paths.styl]);
+  let allPaths = [].concat([paths.js], paths.html, [paths.styl], [paths.common]);
   gulp.watch(allPaths, ['webpack', reload]);
 });
 
@@ -73,16 +75,18 @@ gulp.task('component', () => {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
   let name = yargs.argv.name;
-  let parentPath = yargs.argv.parent || '';
-  let destPath = path.join(resolveToComponents(), parentPath, name);
+  let paramCase = changeCase.paramCase(yargs.argv.name);
+  let parentPath = changeCase.paramCase(yargs.argv.parent || '');
+  let destPath = path.join(resolveToComponents(), parentPath, paramCase);
 
   return gulp.src(paths.blankTemplates)
     .pipe(template({
       name: name,
-      upCaseName: cap(name)
+      upCaseName: cap(name),
+      paramCase: paramCase,
     }))
     .pipe(rename((path) => {
-      path.basename = path.basename.replace('temp', name);
+      path.basename = path.basename.replace('temp', paramCase);
     }))
     .pipe(gulp.dest(destPath));
 });

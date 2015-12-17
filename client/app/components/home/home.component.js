@@ -8,7 +8,7 @@ let homeComponent = function () {
     scope: {},
     template,
     controller,
-    controllerAs: 'vm',
+    controllerAs: 'home',
     bindToController: true
   };
 };

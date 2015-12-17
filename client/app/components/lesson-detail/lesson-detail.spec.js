@@ -1,16 +1,16 @@
-import <%= upCaseName %>Module from './<%= paramCase %>'
-import <%= upCaseName %>Controller from './<%= paramCase %>.controller';
-import <%= upCaseName %>Component from './<%= paramCase %>.component';
-import <%= upCaseName %>Template from './<%= paramCase %>.html';
+import LessonDetailModule from './lesson-detail'
+import LessonDetailController from './lesson-detail.controller';
+import LessonDetailComponent from './lesson-detail.component';
+import LessonDetailTemplate from './lesson-detail.html';
 
-describe('<%= upCaseName %>', () => {
+describe('LessonDetail', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(<%= upCaseName %>Module.name));
+  beforeEach(window.module(LessonDetailModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new <%= upCaseName %>Controller();
+      return new LessonDetailController();
     };
   }));
 
@@ -30,16 +30,16 @@ describe('<%= upCaseName %>', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g);
+      expect(LessonDetailTemplate).to.match(/{{\s?vm\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = <%= upCaseName %>Component();
+      let component = LessonDetailComponent();
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(<%= upCaseName %>Template);
+        expect(component.template).to.equal(LessonDetailTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -47,7 +47,7 @@ describe('<%= upCaseName %>', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(<%= upCaseName %>Controller);
+        expect(component.controller).to.equal(LessonDetailController);
       });
   });
 });

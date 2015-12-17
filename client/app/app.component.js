@@ -1,10 +1,16 @@
 import template from './app.html';
+import controller from './app.controller';
 import './app.styl';
 
 let appComponent = () => {
   return {
+    restrict: 'E',
+    scope: {},
     template,
-    restrict: 'E'
+    controller,
+    transclude: true,
+    controllerAs: 'app',
+    bindToController: true,
   };
 };
 
