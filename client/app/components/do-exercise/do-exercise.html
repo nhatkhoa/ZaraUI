@@ -1,3 +1,36 @@
-<h1>
-  Do Exercise {{ doExercise.questions }}
-</h1>
+
+<div layout="column" layout-padding>
+  <md-button class="md-raised"> Điểm : {{doExercise.total}} /{{doExercise.max}}  </md-button>
+  <md-button class="md-raised md-warm" ng-click="doExercise.submit()"> Kết Thúc Bài Làm - Nộp Bài</md-button>
+  <md-slider class="md-warn" ng-init="doExercise.total = 0" md-discrete ng-model="doExercise.total" step="10" min="0" max="doExercise.max">
+  </md-slider>
+</div>
+<div class="tabsdemoDynamicTabs" layout="column" ng-cloak="" ng-init="doExercise.selectedIndex = 0">
+  <div layout="column" layout-padding>
+    <md-tabs md-dynamic-height="true" md-selected="doExercise.selectedIndex" md-border-bottom="2px">
+      <md-tab ng-class="{answer : (doExercise.results[question.id] > 0)}" ng-repeat="question in doExercise.questions" ng-disabled="question.disabled" label="Câu {{$index + 1}}">
+        <div layout-padding>
+          <h5>
+            <strong > Câu {{$index + 1}}: </strong>
+            <span ng-bind="question.question"></span>
+          </h5>
+          <div class="container">
+            <md-radio-group ng-model="question.selected" class="row">
+              <h5 ng-repeat="option in question.options" ng-class="{answer : (question.answers[0] == $index) && (question.result != undefined) }">
+                <md-radio-button ng-value="$index" class="col s5">
+                  {{option}}
+                </md-radio-button>
+              </h5>
+
+            </md-radio-group>
+          </div>
+          <md-divider></md-divider>
+          <section layout="row" layout-phone="column" layout-align="end end">
+            <md-button class="md-warn" ng-show="selectedIndex != doExercise.questions.length" ng-click="doExercise.next()">Câu Tiếp Theo</md-button>
+            <md-button ng-disabled="question.result != undefined" ng-click="doExercise.checkSingleQuestion(question)" class="md-raised md-primary">Kiểm Tra Đáp Án</md-button>
+          </section>
+
+        </div>
+      </md-tab>
+    </md-tabs>
+  </div>

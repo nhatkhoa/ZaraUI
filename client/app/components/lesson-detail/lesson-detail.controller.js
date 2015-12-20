@@ -24,7 +24,7 @@ class LessonDetailController {
   }
 
   selectExercise(exercise) {
-    this.ShareService.selectExercise(exercise);
+    this.ShareService.selectExercise(this.lessonId ,exercise);
   }
 
   getPokemonImage(){

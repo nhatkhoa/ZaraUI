@@ -7,12 +7,12 @@ let doExerciseModule = angular.module('doExercise', [
 ])
 
 .directive('doExercise', doExerciseComponent)
-.config(/*@ngInject*/($stateProvider) => {
-  $stateProvider
-  .state('exercise', {
-    url: '/exercises/:exercise/start',
-    template: '<do-exercise></do-exercise>'
+  .config( /*@ngInject*/ ($stateProvider) => {
+    $stateProvider
+      .state('exercise', {
+        url: '/exercises/:lesson/:exercise/start',
+        template: '<do-exercise></do-exercise>'
+      });
   });
-});
 
 export default doExerciseModule;

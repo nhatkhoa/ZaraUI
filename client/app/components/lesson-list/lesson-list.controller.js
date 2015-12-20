@@ -23,9 +23,9 @@ class LessonListController {
 
   getCol(lesson) {
     if (lesson.pokemonLevel === 0) {
-      return 2;
+      return 3;
     }
-    return 4;
+    return 3;
   }
 
   getImage(lesson) {

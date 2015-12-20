@@ -17,11 +17,10 @@ class ShareService {
     });
   }
 
-  selectExercise(exercise) {
-    console.log(`select exercise ${JSON.stringify(exercise)}`);
-
+  selectExercise(lessonId, exercise) {
     this.selectedExercise = exercise;
     this.$state.go('exercise', {
+      lesson: lessonId,
       exercise: exercise.id,
     });
   }
