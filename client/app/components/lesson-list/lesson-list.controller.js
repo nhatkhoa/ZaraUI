@@ -1,11 +1,12 @@
 class LessonListController {
   /*@ngInject*/
-  constructor(LessonFactory, ShareService) {
+  constructor(LessonFactory, ShareService, $state) {
     this.name = 'lessonList';
 
     angular.extend(this, {
       LessonFactory,
       ShareService,
+      $state,
     });
 
     this.loadData();
@@ -23,20 +24,20 @@ class LessonListController {
 
   getCol(lesson) {
     if (lesson.pokemonLevel === 0) {
-      return 3;
+      return 4;
     }
-    return 3;
+    return 4;
   }
 
   getImage(lesson) {
-    if (lesson.pokemonLevel === 0) {
+    if (!lesson.pokemon) {
       return 'public/images/ball.png';
     }
-    return lesson.pokemonImg;
+    return lesson.pokemon.thumbnailImage;
   }
 
-  selectLesson(lesson) {
-    this.ShareService.selectLesson(lesson);
+  selectLesson(lessonId) {
+    this.$state.go('lesson', {id: lessonId});
   }
 }
 

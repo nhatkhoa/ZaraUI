@@ -1,28 +1,33 @@
-<md-content class="lesson-list" layout-padding>
-  <h1>{{ app.name }}</h1>
-  <div flex="" ng-cloak="">
-    <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="12" md-row-height-gt-md="1:1" md-row-height="1:1" md-gutter="8px" md-gutter-gt-sm="16px">
-      <md-grid-tile 
-        ng-click="lessonList.selectLesson(lesson)" 
-        class="md-whiteframe-2dp lesson-item" 
-        ng-repeat="lesson in lessonList.lessons track by lesson.id" 
-        md-rowspan="{{lessonList.getCol(lesson)}}" 
-        md-colspan="{{lessonList.getCol(lesson)}}">
-        <div class="pokemon">
-          <img  ng-src="{{lessonList.getImage(lesson)}}" alt="asdads" />
-          <div class="level">
-            <md-progress-linear ng-if="lesson.pokemonLevel !== 0" md-mode="determinate" value="{{ lesson.pokemonLevel }}"></md-progress-linear>
-          </div>
-          <div ng-show="lesson.pokemon !== 'none'" class="name">
-            <p>{{ lesson.pokemon }}</p>
-          </div>
-        </div>
-        <md-grid-tile-footer class="title">
-          <h3>{{lesson.title}}</h3>
-          <h3>{{app.name}}</h3>
-
-        </md-grid-tile-footer>
-      </md-grid-tile>
-    </md-grid-list>
+<div class="row">
+  <div class="col s12" ng-init="search.pokemonLevel = 0">
+    <h6>Hiển Thị Theo: </h6>
+    <md-button ng-click="strict = true">Bài Đã Học</md-button>
+    <md-button ng-click="strict = false">Bài Chưa Học</md-button>
   </div>
-</md-content>
+
+</div>
+<md-divider md-inset></md-divider>
+<div class="row">
+  <div class="col s6" ng-repeat="lesson in lessonList.lessons track by lesson.id" 
+        ng-click="lessonList.selectLesson(lesson.id)">
+    <div class="card hoverable" >
+      <div class="card-content">
+        <h6 class="activator grey-text text-darken-4" ng-bind="lesson.title"></h6>
+
+      </div>
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" ng-src="{{lessonList.getImage(lesson)}}">
+        <p ng-show="lesson.pokemonLevel != 0" class="pokemon-name" ng-bind="lesson.pokemon">Pokemon Name</p>
+      </div>
+      <div class="card-action level-block">
+        <h6 ng-if="!lesson.canLearn">Cần thêm {{lesson.levelRequire}} điểm để học</h6>
+        <h6  ng-if="!lesson.pokemon && lesson.canLearn">Bài học sẵn sàng cho bạn</h6>
+        <div ng-if="!lesson.pokemon && lesson.canLearn" class="progress">
+          <div class="indeterminate"></div>
+        </div>
+        <level-bar ng-if="lesson.pokemon" pokemon="lesson.pokemon"></level-bar>
+      </div>
+
+    </div>
+  </div>
+</div>

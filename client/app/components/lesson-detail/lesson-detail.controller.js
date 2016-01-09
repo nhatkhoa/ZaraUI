@@ -28,12 +28,18 @@ class LessonDetailController {
   }
 
   getPokemonImage(){
-    if(!this.lesson || this.lesson.pokemonLevel === 0){
-      return '/public/images/ball.png';
+    if(!this.lesson || !this.lesson.pokemon){
+      return '/public/images/gif.gif';
     }
-
-    return this.lesson.pokemonImg;
+    return this.lesson.pokemon.thumbnailImage;
   }
+  
+  getPercent(pokemon){
+    let percent = (pokemon.currentScore - pokemon.previousScore)/(pokemon.nextScore - pokemon.previousScore)*100;
+    percent = parseInt((percent + 5 ) / 5) * 5;
+    return percent;
+  }
+  
 }
 
 export default LessonDetailController;

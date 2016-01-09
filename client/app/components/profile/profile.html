@@ -1,0 +1,17 @@
+<div class="row">
+
+    <div class="card">
+        <div class="card-content center-align">
+            <h5 class="activator grey-text text-darken-4"><Strong ng-bind="profile.user.username"></Strong></h5>
+        </div>
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" ng-src="{{profile.user.gender ? 'public/images/boy.png' : 'public/images/girl.png'}}">
+        </div>
+        <div class="card-content">
+
+           <h5 class="card-title activator grey-text text-darken-4">Tổng điểm: {{profile.user.score}}</h5>
+           <h5 class="card-title activator grey-text text-darken-4">Tổng Pokemon: {{profile.user.numberOfPokemon}}</h5>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col s12 m6">
+    <img src="/public/images/login.png" alt="pokemon">
+  </div>
+  <div class="col s12 m6">
+    <div class="card ">
+      <div class="card-content ">
+        <span class="card-title">Đăng Nhập</span>
+        <div class="row" layout="column" layout-padding>
+          <md-input-container>
+            <label>Tài Khoản</label>
+            <input type="text" ng-model="login.username" required md-maxlength="12">
+          </md-input-container>
+          <md-input-container>
+            
+            <label>Mật Khẩu</label>
+            <input type="password" ng-model="login.password" required md-maxlength="12">
+          </md-input-container>
+          <div class="input-field col s12">
+            <button ng-click="login.login()" class="waves-effect waves-light btn white-text right">
+              <h6><i class="material-icons left">check</i>Đăng Nhập</h6>
+            </button>
+            <a href="/#/register" class="waves-effect waves-light link">
+              <h6>Đăng Ký Thành Viên</h6>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>

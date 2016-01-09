@@ -1,6 +1,6 @@
 class DoExerciseController {
   /*@ngInject*/
-  constructor(LessonFactory, $stateParams, $mdToast, $http) {
+  constructor(LessonFactory, $stateParams, $mdToast, $http, $state) {
     angular.extend(this, {
       name: 'doExercise',
       LessonFactory,
@@ -8,6 +8,7 @@ class DoExerciseController {
       $stateParams,
       $mdToast,
       $http,
+      $state,
     });
     this.loadData($stateParams.exercise);
   }
@@ -17,12 +18,8 @@ class DoExerciseController {
       .getQuestions(exerciseId)
       .then(response => {
         this.questions = response.data;
-        this.max = 0;
+        console.log(response.data);
         this.total = 0;
-        this.questions.forEach(p => {
-          this.max += p.score;
-        });
-        console.log(this.max);
       })
       .catch(er => console.log(er));
   }
@@ -42,11 +39,11 @@ class DoExerciseController {
     }
 
     if (question.selected == question.answers[0]) {
-      this.results[question.id] = question.score;
+      this.results[question.id] = 10;
       question.result = true;
-      this.total += question.score;
+      this.total += 10;
       this.$mdToast
-        .showSimple(`Chính xác! Cộng thêm ${question.score} điểm nữa!`);
+        .showSimple(`Chính xác! Cộng thêm 10 điểm nữa!`);
       this.next();
     } else {
       question.result = false;
@@ -93,6 +90,7 @@ class DoExerciseController {
     .then(response => {
       this.$mdToast
         .showSimple(`Tổng số điểm là ${this.total}`);
+      this.$state.go('lesson',{id: lesson});
     })
     .catch(er => {
       console.log(er);

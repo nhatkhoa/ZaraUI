@@ -19,6 +19,9 @@ module.exports = {
       test: /\.css$/,
       loader: 'style!css'
     }, {
+      test: /\.scss$/,
+      loader: 'style!css!sass'
+    }, {
       test: [/fontawesome-webfont\.svg/, /fontawesome-webfont\.eot/, /fontawesome-webfont\.ttf/, /fontawesome-webfont\.woff/, /fontawesome-webfont\.woff2/],
       loader: 'file?name=fonts/[name].[ext]'
     }, {
