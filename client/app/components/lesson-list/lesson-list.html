@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col s12" ng-init="search.pokemonLevel = 0">
     <h6>Hiển Thị Theo: </h6>
@@ -17,10 +18,10 @@
       </div>
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" ng-src="{{lessonList.getImage(lesson)}}">
-        <p ng-show="lesson.pokemonLevel != 0" class="pokemon-name" ng-bind="lesson.pokemon">Pokemon Name</p>
+        <p ng-show="lesson.pokemonLevel != 0" class="pokemon-name" ng-bind="lesson.pokemon.name">Pokemon Name</p>
       </div>
       <div class="card-action level-block">
-        <h6 ng-if="!lesson.canLearn">Cần thêm {{lesson.levelRequire}} điểm để học</h6>
+        <h6 ng-if="!lesson.canLearn">Cần thêm {{lesson.requireScore}} điểm để học</h6>
         <h6  ng-if="!lesson.pokemon && lesson.canLearn">Bài học sẵn sàng cho bạn</h6>
         <div ng-if="!lesson.pokemon && lesson.canLearn" class="progress">
           <div class="indeterminate"></div>

@@ -35,7 +35,7 @@ class LessonDetailController {
   }
   
   getPercent(pokemon){
-    let percent = (pokemon.currentScore - pokemon.previousScore)/(pokemon.nextScore - pokemon.previousScore)*100;
+    let percent = pokemon.currentScore/(pokemon.nextScore - pokemon.previousScore)*100;
     percent = parseInt((percent + 5 ) / 5) * 5;
     return percent;
   }

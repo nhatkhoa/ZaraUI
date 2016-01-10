@@ -3,8 +3,9 @@ class LevelBarController {
     this.name = 'levelBar';
   }
   
-  getPercent(){
-    const percent = (this.pokemon.currentScore - this.pokemon.previousScore)/(this.pokemon.nextScore - this.pokemon.previousScore)*100;
+  getPercent(pokemon){
+    let percent = pokemon.currentScore/(pokemon.nextScore - pokemon.previousScore)*100;
+    percent = parseInt((percent + 5 ) / 5) * 5;
     return percent;
   }
 }

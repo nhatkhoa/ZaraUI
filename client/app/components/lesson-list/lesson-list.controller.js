@@ -30,9 +30,8 @@ class LessonListController {
   }
 
   getImage(lesson) {
-    if (!lesson.pokemon) {
-      return 'public/images/ball.png';
-    }
+    if (!lesson.canLearn) return 'public/images/none.png';
+    if (!lesson.pokemon) return 'public/images/ball.png';
     return lesson.pokemon.thumbnailImage;
   }
 
